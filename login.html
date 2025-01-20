@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        .login-container {
+            background-color:black;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+            color: white;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #a00000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #df0606;
+        }
+
+        .error {
+            color: rgb(58, 172, 24);
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+        .login-container p{
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .login-container small {
+            display: block;
+            font-size: 12px;
+            margin-top: 20px;
+            color: whitesmoke;
+        }
+        .login-container a {
+            color: whitesmoke;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login / Sign Up</h2>
+        <p>Using OTP</p>
+        <form id="login-form">
+            <input type="text" id="phone-number" placeholder="Enter Phone Number">
+            <span class="error" id="error-message">Please enter a valid 10-digit number.</span>
+            <button type="submit">Continue</button>
+            <small>
+                By continuing, I accept TCP - 
+                <a href="#">Terms and Conditions</a> & 
+                <a href="#">Privacy Policy</a>.
+                This site is protected by reCAPTCHA and the Google - 
+                <a href="#">Privacy Policy</a> & 
+                <a href="#">Terms of Service</a> apply.
+            </small>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('login-form');
+        const phoneNumberInput = document.getElementById('phone-number');
+        const errorMessage = document.getElementById('error-message');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+            const phoneNumber = phoneNumberInput.value.trim();
+
+            // Validate phone number length and numeric value
+            if (/^\d{10}$/.test(phoneNumber)) {
+                errorMessage.style.display = 'none'; // Hide error message
+                alert("Redirecting to OTP page..."); // Optional message
+                window.location.href = "otp.html"; // Redirect to OTP page
+            } else {
+                errorMessage.style.display = 'block'; // Show error message
+            }
+        });
+    </script>
+    <script>
+        function toggleButton() {
+            const input = document.getElementById('user-input').value;
+            const button = document.getElementById('continue-btn');
+            button.disabled = !input.trim(); // Enable button if input is not empty
+        }
+
+        function navigateToOtp() {
+            window.location.href = "otp.html"; // Navigate to OTP page
+        }
+    </script>
+</body>
+</html>
